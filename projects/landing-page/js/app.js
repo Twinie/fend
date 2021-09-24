@@ -56,7 +56,7 @@
 
 
 
-const list = document.querySelector("#navbar__list");
+const list = document.querySelector("#navbar__list");                  // <ul> selected to add List items into it.
 
 const array = [
     {text:"Home", class:".main__hero"},
@@ -72,13 +72,13 @@ for(let i=0; i<array.length; i++){
     list.appendChild(item);
 
 
-    item.setAttribute("data-class", array[i]['class']);                   
+    item.setAttribute("data-class", array[i]['class']);                  // the data-class value is added to the list items, which is actually the class of the sections to move to on clicking the list items. 
 
     
     item.addEventListener("click", function(evt){
         const clickedLI = evt.target;
         const section = clickedLI.getAttribute("data-class");
-        const sectToMove = document.querySelector(section);
+        const sectToMove = document.querySelector(section);               // Here the above data class is assigned by document.querySelector.
         sectToMove.scrollIntoView({behavior: "smooth"});
 
         const removeClass = document.querySelectorAll("ul li");           // to remove the styling once the other item is clicked
