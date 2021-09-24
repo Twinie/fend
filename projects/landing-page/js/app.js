@@ -59,28 +59,42 @@
 const list = document.querySelector("#navbar__list");
 
 const array = [
-    {text:"Home", class:".main__hero", classForLI: "home-nav", classLIwithDot: ".home-nav"},
-    {text:"About", class:".about", classForLI: "about-nav", classLIwithDot: ".about-nav"},
-    {text:"Service", class:".service", classForLI: "service-nav", classLIwithDot: ".service-nav"},
-    {text:"Manual", class:".manual", classForLI: "manual-nav", classLIwithDot: ".manual-nav"},
-    {text:"Contact", class:".contact", classForLI: "contact-nav", classLIwithDot: ".contact-nav"}
+    {text:"Home", class:".main__hero"},
+    {text:"About", class:".about"},
+    {text:"Service", class:".service"},
+    {text:"Manual", class:".manual"},
+    {text:"Contact", class:".contact"}
 ]
 
-for(i=0; i<array.length; i++){
+for(let i=0; i<array.length; i++){
     const item = document.createElement("li");
     item.innerHTML = array[i]['text'];
     list.appendChild(item);
 
 
-    item.setAttribute("data-class", array[i]['class']);
+    item.setAttribute("data-class", array[i]['class']);                   
 
     
     item.addEventListener("click", function(evt){
         const clickedLI = evt.target;
         const section = clickedLI.getAttribute("data-class");
         const sectToMove = document.querySelector(section);
-        sectToMove.scrollIntoView({behavior: "smooth"})
-    })
-}
+        sectToMove.scrollIntoView({behavior: "smooth"});
 
+        const removeClass = document.querySelectorAll("ul li");           // to remove the styling once the other item is clicked
+        for(let j=0; j<removeClass.length; j++){
+        const removedClass = removeClass[j].classList;
+        removedClass.remove("active-li");
+
+        console.log(removedClass);
+        }
+    
+
+
+        const log = clickedLI.classList;                                 // to add styling to active states, class is added to LI.
+        log.add("active-li");
+        console.log(log);
+    })
+
+}
 
