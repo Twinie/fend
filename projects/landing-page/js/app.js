@@ -1,22 +1,4 @@
-/**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
 
-/**
- * Define Global Variables
- * 
-*/
 
 
 /**
@@ -72,7 +54,7 @@ for(let i=0; i<array.length; i++){
     list.appendChild(item);
 
 
-    item.setAttribute("data-class", array[i]['class']);                  // the data-class value is added to the list items, which is actually the class of the sections to move to on clicking the list items. 
+    const classForLI = item.setAttribute("data-class", array[i]['class']);                  // the data-class value is added to the list items, which is actually the class of the sections to move to on clicking the list items. 
 
     
     item.addEventListener("click", function(evt){
@@ -81,9 +63,9 @@ for(let i=0; i<array.length; i++){
         const sectToMove = document.querySelector(section);               // Here the above data class is assigned by document.querySelector.
         sectToMove.scrollIntoView({behavior: "smooth"});
 
-        const removeClass = document.querySelectorAll("ul li");           // to remove the styling once the other item is clicked
-        for(let j=0; j<removeClass.length; j++){
-        const removedClass = removeClass[j].classList;
+        const selectToRemoveClass = document.querySelectorAll("ul li");           // to remove the styling once the other item is clicked
+        for(let j=0; j<selectToRemoveClass.length; j++){
+        const removedClass = selectToRemoveClass[j].classList;
         removedClass.remove("active-li");
 
         console.log(removedClass);
@@ -98,3 +80,34 @@ for(let i=0; i<array.length; i++){
 
 }
 
+// const topMenuListHeight = list.offsetTop;
+const navbarListItems = document.querySelectorAll('ul li')
+const scrollItems = document.querySelectorAll("section");
+let lastClass;
+
+window.addEventListener("scroll", function(){
+    const mainHeroHeight = document.querySelector(".main__hero").offsetTop;
+    console.log(mainHeroHeight);
+    let fromTop = window.pageYOffset + mainHeroHeight;
+
+    let scrolledItemArray = [];
+    scrollItems.forEach(function(scrollItem){
+if (scrollItem.offsetTop < fromTop){
+    scrolledItemArray.push(scrollItem)
+}
+    })
+
+    const lastScrolledItem = scrolledItemArray[scrolledItemArray.length - 1];
+    let classOfScrollItem = lastScrolledItem ? scrolledItemArray.getAttribute("class") : "";
+
+    if(lastClass !== classOfScrollItem){
+        lastClass = classOfScrollItem;
+
+navbarListItems.forEach(function(li, index){
+    li.classList.remove("active-li");
+
+    const itemsToAddClass = lastScrolledItem.classList.add("active-li");
+
+})
+    }
+})
