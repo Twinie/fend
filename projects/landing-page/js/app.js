@@ -24,7 +24,7 @@ for (let i = 0; i < array.length; i++) {
     list.appendChild(item);
 
     // the data-class value is added to the list items, which is actually the class of the sections to move to on clicking the list items. 
-    const classForLI = item.setAttribute("data-class", array[i]['class']); 
+    item.setAttribute("data-class", array[i]['class']); 
 
     item.addEventListener("click", function(evt) {
         const clickedLI = evt.target;
@@ -73,7 +73,7 @@ window.addEventListener("scroll", function() {
     if (lastClass !== classOfScrollItem) {
         lastClass = classOfScrollItem;
 
-        navbarListItems.forEach(function(li, index) {
+        navbarListItems.forEach(function(li) {
             li.classList.remove("active-li");
 
             if (li.getAttribute("data-class") === `.${lastClass}`) {
