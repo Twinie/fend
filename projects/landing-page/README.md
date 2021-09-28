@@ -12,7 +12,7 @@
 
 - The List items are added to empty \<ul\> with the help of JavaScript, using for loop iterating through the objects in the array to assign the innerHTML and data-class.
 
-- As addEventListener will not function unless an event is given, the for loop would not function with the for loop as the loop that is assigning the values ends before the event("click") takes place.
+- As addEventListener will not function unless an event is given, the eventlistener given would not function with the for loop as the loop that is assigning the values ends before the event("click") takes place.
 
 ## Usage
 
@@ -29,3 +29,7 @@
 - classList property is used to add an active class to every item as styling had to be done for active sections i.e the sections which is viewed has to be be highlighted like it is highlighted during hovering the items on the navbar.
 
 - Now adding class to all the items makes it highlighted permanently once it is clicked, we need to remove the class using the classList property with remove method before adding the class.
+
+- addEventListener is added for the scroll event to clearly show which section is being scrolled and which section is on the viewport that should be highlighted on the navbar.
+
+- offsetTop is used to know the height of the section from the beginning of the document. It is used to set the height and to know from where the section starts and to add the class to the appropriate list-item to make it clear from the navbar about the section being viewed or scrolled.
